@@ -1,0 +1,1245 @@
+/*------------------------------ Paramètres généraux ------------------------------------*/
+/* Ajout des suffixes -moz-, -ms- -o- et -webkit- afin d'assurer la compatibilité inter-navigateur */
+
+* {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+/* Calibrage responsive : 1rem = 10px et ajustements afin que le footer reste en bas de la page, peu importe le contenu
+ en sachant que pour certains conteneurs, une utilisation d'unités vh et vw a été favorisé pour adapter leur taille en fonction de la résolution*/
+html {
+  font-size: 62.5%;
+  position: relative;
+  height: 100%;
+}
+
+/* Conteneurs */
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  /*max-width: 95%;
+  margin: 0 auto;
+  text-align: center;*/
+  min-height: 100vh;
+}
+
+article {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Polices de caractères et typographie */
+
+h1,
+h2,
+h3,
+h4,
+cite {
+  font-weight: 700;
+  font-family: "Rubik", sans-serif;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 4rem;
+  font-family: "Rubik", sans-serif;
+}
+
+h3 {
+  font-size: 2.4rem;
+}
+
+h4,
+cite {
+  font-size: 1.8rem;
+}
+
+p {
+  font-family: "Rubik", sans-serif;
+  font-size: 1.6rem;
+}
+
+a {
+  margin: auto;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  color: rgb(226, 226, 226);
+  letter-spacing: 0.2rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+i {
+  vertical-align: middle;
+  color: #fecd00;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  font-family: "Rubik", sans-serif;
+  font-size: 1.6rem;
+  /*line-height: 180%;*/
+  list-style: none;
+}
+
+span {
+  color: #fecd00;
+}
+
+/*-------------------------------------------- Éléments fixes de la page (Header, main & footer) ---------------------------------------*/
+/* Le header étant fixé : une marge inférieure égale à la hauter du header est nécessaire pour éviter de masquer le contenu du dessous */
+/* Header */
+header {
+  z-index: 5;
+  background-color: #2e2329;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6.12rem;
+}
+
+/* Barre de navigation */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.5s;
+}
+
+/* Logo du site */
+.logo {
+  cursor: pointer;
+  margin-left: 2rem;
+}
+
+.logo:hover {
+  -webkit-animation: bounce 4s infinite ease-in-out;
+  animation: bounce 1s infinite ease-in-out;
+}
+
+/* Liens de la barre de navigation  */
+.nav-links {
+  vertical-align: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-links li {
+  cursor: pointer;
+  padding: 1rem;
+  margin: 0 1rem;
+  transition: 0.5s;
+  position: relative;
+}
+
+.nav-links li:hover {
+  background-color: rgba(226, 226, 226, 0.2);
+}
+
+/* Contenant les liens « Sign in » et « Register » si personne n'est connecté, « Sign out » sinon */
+.connection {
+  display: flex;
+  padding-right: 2vw;
+  border-left: #fecd00 1px solid;
+}
+
+/* Texte de bienvenue – appairassant si l'utilisateur est connecté. */
+.welcome,
+.created {
+  color: #fecd00;
+  background-color: #006aa8;
+  padding: 1rem 0;
+  margin-bottom: 0;
+}
+
+/* Pour évier l'écart entre les deux messages flashBag*/
+.welcome + .created {
+  margin-top: 0;
+}
+
+.welcome {
+  border-bottom: 1px solid;
+  text-align: right;
+  padding-right: 5rem;
+}
+
+/* Notification d'actions */
+.created {
+  text-align: center;
+  margin-top: 1.7rem;
+}
+
+/* Bouton déroulant la barre de navigation en affichage mobile */
+.burger {
+  display: none;
+}
+
+.burger div {
+  background-color: #fecd00;
+  width: 2.5rem;
+  height: 0.3rem;
+  margin: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+/* Main */
+main {
+  text-align: center;
+  margin-top: 4.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Footer */
+footer {
+  color: white;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+  margin-top: auto;
+  background-color: #2e2329;
+}
+/* Informations : Horaires d'ouverture, Adresse...etc. */
+.footer-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: space-between;
+}
+
+.footer-info li {
+  line-height: 250%;
+}
+
+.footer-info :first-child :first-child:not(i) {
+  color: #fecd00;
+}
+
+/* Partie réseaux sociaux du footer */
+.social-media {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.social-media i {
+  font-size: 1.8rem;
+  transition: transform 0.3s ease-in;
+  padding: 0 3rem;
+}
+
+.social-media i:hover {
+  transform: scale(1.4);
+}
+
+/* Partie basse du footer */
+.copyright {
+  padding-bottom: 0;
+}
+
+/*-------------------------------------------------------- Home -------------------------------------------------------------*/
+/* Conteneur de la page */
+.home {
+  display: flex;
+  display: row;
+}
+.home a {
+  padding: 30rem 5rem;
+  font-size: 1.6rem;
+  text-shadow: 0.07rem 0 black, 0 0.07rem black, -0.07rem 0 black, 0 -0.07rem black;
+}
+.home i {
+  font-size: 3rem;
+}
+
+/* Articles de la page d'accueil */
+.home article {
+  background-blend-mode: multiply;
+  border: black 1px solid;
+  width: 100vw;
+  height: 100vh;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  transition: ease-in 0.3s;
+}
+
+/* Arrière-plan des articles */
+.home-menu {
+  background: url(../img/menu.jpg) no-repeat center center rgba(0, 0, 0, 0.3);
+}
+
+.home-staff {
+  background: url(../img/staff.jpg) no-repeat center center rgba(0, 0, 0, 0.3);
+}
+
+.home-about {
+  background: url(../img/about.jpg) no-repeat center center rgba(0, 0, 0, 0.3);
+}
+
+/* Survol de la souris des articles étant les enfants directs de .home */
+.home > article:hover {
+  cursor: pointer;
+  text-transform: uppercase;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/*------------------------------------------------ Commun aux forumulaires ----------------------------------------------------*/
+fieldset {
+  color: white;
+  margin: auto;
+  padding: 2rem 8rem;
+}
+
+legend {
+  font-size: 1.8rem;
+  font-weight: 700;
+  font-family: "Rubik", sans-serif;
+  color: #fecd00;
+}
+
+input,
+label {
+  font-size: 1.6rem;
+  font-family: "Rubik", sans-serif;
+  border: none;
+}
+
+label {
+  position: absolute;
+  color: #fecd00;
+  top: 0;
+  left: 0;
+  padding: 1rem 0;
+  transition: 0.5s;
+}
+
+label[for="birthDay"],
+label[for="address"],
+label[for="bookingDay"],
+label[for="numberOfSeats"] {
+  top: -4.5rem;
+  right: 0;
+}
+
+label[for="photo"] {
+  margin-top: -2rem;
+}
+
+label[for="category"] {
+  margin-top: -1rem;
+}
+
+/* Suppression des flèches des champs de saisie */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+option,
+select {
+  text-transform: capitalize;
+}
+
+select,
+textarea {
+  font-family: "Rubik", sans-serif;
+  font-size: 1.4rem;
+  color: #fecd00;
+  margin-bottom: 5rem;
+}
+
+textarea {
+  /*width: 35rem;*/
+  background-color: #006aa8;
+  resize: none;
+}
+
+input[type="submit"] {
+  transition: ease-in 0.3s;
+}
+
+input[type="submit"]:hover,
+.button:hover {
+  cursor: pointer;
+}
+
+select {
+  border: 1px ridge;
+  background: rgba(0, 106, 168, 0.7);
+}
+
+/* Message d'erreur*/
+.error-message p {
+  font-weight: bold;
+  color: red;
+}
+.error-message i,
+.created i {
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Conteneur commun */
+.login,
+.register,
+.booking {
+  background: url(../img/form-bg.jpg) no-repeat center center rgba(0, 0, 0, 0.3);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Formulaire commun */
+.login-form,
+.register-form,
+.reservation-form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  min-height: 50vh;
+  min-width: 40vw;
+  padding: 4rem;
+  background: rgba(0, 106, 168, 0.7);
+  box-shadow: 0 1.5rem 2.5rem rgba(0, 0, 0, 0.6);
+}
+
+/* Titre commun */
+.login-title,
+.register-title {
+  margin-top: 1rem;
+  text-transform: uppercase;
+  color: #fecd00;
+}
+
+/*-------------------------------------------------------- Sign in -------------------------------------------------------------*/
+/* Formulaire d'authentification */
+
+.login-form {
+  justify-content: center;
+  margin: 10rem;
+}
+/* Position relative au formulaire (parent absolu) */
+.form-field {
+  position: relative;
+}
+
+.form-field input {
+  color: white;
+  width: 100%;
+  padding: 1rem 0;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid #fecd00;
+  outline: none;
+  background: transparent;
+}
+
+input[required]:valid ~ label,
+input:focus ~ label {
+  top: -2rem;
+  color: #fecd00;
+}
+
+.login-form > a {
+  max-width: 100%;
+  margin: 0 auto;
+  font-weight: normal;
+}
+
+/*-------------------------------------------------------- Register -------------------------------------------------------------*/
+.register {
+  flex-direction: column;
+}
+
+.register-form {
+  justify-content: center;
+  width: 50vw;
+  margin: 10rem auto;
+}
+
+.birthday,
+.address {
+  position: relative;
+}
+
+.birthday,
+.booking-date,
+.number-of-seats {
+  margin-top: 4rem;
+}
+
+.address {
+  margin-top: 2rem;
+  margin-bottom: -1rem;
+}
+
+/*-------------------------------------------------------- Reservation -------------------------------------------------------*/
+
+.reservation-form {
+  justify-content: center;
+  margin: 10rem;
+}
+
+.reservation-form span {
+  font-size: 1.4rem;
+}
+
+/*------------------------------------------------ Commun à Staff et Menu et About ----------------------------------------------------*/
+
+figure {
+  min-height: 21vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /*justify-content: space-between;*/
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+/* Utilisation de la propriété objet-fit pour uniformiser les dimensions des images */
+figure img {
+  /*max-width: 45rem;
+  max-height: 45rem;*/
+  object-fit: cover;
+  width: 40rem;
+  height: 40rem;
+}
+
+figcaption {
+  margin-top: 2rem;
+  display: none;
+  color: white;
+  font-family: "Rubik", sans-serif;
+  font-weight: bolder;
+  text-transform: capitalize;
+  font-size: 1.9rem;
+}
+.staff,
+.menu {
+  background-color: #2e2244;
+  padding-top: 3rem;
+  width: 100vw;
+  /*height: 100vh;*/
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-self: center;
+  padding-bottom: 5rem;
+}
+/*------------------------------------------------------- Partie Admin ---------------------------------------------------------------*/
+
+/* Tableau afficheant le contenu de la base de données */
+table input {
+  width: 10vw;
+  font-size: inherit;
+  text-align: center;
+  color: inherit;
+  border: 1px #fecd00 solid;
+  background-color: #006aa8;
+}
+table {
+  color: white;
+  table-layout: fixed;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5rem;
+  width: 95%;
+  border-collapse: collapse;
+  margin: 50px auto;
+}
+
+th {
+  background: #006aa8;
+  height: 5rem;
+  color: #fecd00;
+  font-weight: bold;
+}
+
+tr {
+  transition: all 0.4s;
+}
+
+td,
+th {
+  text-transform: capitalize;
+  padding: 1rem;
+  border: 1px solid #fecd00;
+  text-align: center;
+}
+tr:nth-of-type(odd) {
+  background-color: black;
+}
+
+/* A noter que l'unité vw a été mise dans height au lieu de vh pour conserver les dimensions de l'image*/
+table img {
+  object-fit: cover;
+  width: 12vw;
+  height: 12vw;
+}
+
+table .button {
+  width: 8rem;
+}
+
+.insert-form {
+  display: flex;
+  align-content: center;
+  margin: auto;
+  justify-content: space-around;
+}
+
+/*-------------------------------------------------------- About -------------------------------------------------------------*/
+.fa-rotate-45 {
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+
+/* Drapeau français*/
+.fr-flag {
+  display: inline-block;
+  margin: 0 2rem;
+  width: 4.5rem;
+  height: 3rem;
+  vertical-align: middle;
+  border: 1px solid white;
+  background: linear-gradient(to right, #0055a4 0, #0055a4 33%, #fff 0033%, #fff 66%, #ed2939 66%, #ed2939 100%);
+}
+
+.about {
+  color: #fecd00;
+  background-color: #006aa8;
+  padding-top: 3rem;
+  max-width: 100vw;
+  /*height: 100vh;*/
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+  align-self: center;
+  padding-bottom: 5rem;
+}
+.about p {
+  font-size: 2rem;
+  padding: 0 5rem;
+}
+
+.about h2 i {
+  margin: 0 2rem;
+  border: 1px solid white;
+}
+
+blockquote {
+  font-size: 1.7rem;
+  font-family: "Poppins", sans-serif;
+}
+.review {
+  padding: 4rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.review article {
+  box-shadow: 0 11px 0 1px rgba(255, 255, 255, 0.2);
+  width: 40rem;
+  max-height: 45rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.2);
+  animation: bounce-2 1.5s infinite ease-in-out;
+}
+
+.review img {
+  margin: 0 auto;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 3rem;
+  width: 15rem;
+  height: 15rem;
+}
+
+.about p {
+  color: #fecd00;
+}
+
+iframe {
+  max-width: 95vw;
+  margin: 0 auto;
+}
+
+/*-------------------------------------------------------- Divers ---------------------------------------------------------------*/
+
+/* Boutons */
+.buttons-container {
+  margin: 3rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.button {
+  color: white;
+  border-radius: 5%;
+  width: 10rem;
+  padding: 1rem;
+  font-family: "Rubik", sans-serif;
+  font-size: 1.4rem;
+  font-weight: normal;
+  letter-spacing: 0;
+  margin: auto;
+  margin-bottom: 1rem;
+  transition: ease-in 0.3s;
+}
+
+.button-primary {
+  background-color: rgba(0, 106, 168);
+}
+
+.button-primary:hover {
+  background-color: rgba(0, 106, 168, 0.5);
+  color: #fecd00;
+}
+
+.button-cancel {
+  background-color: rgba(196, 30, 58);
+}
+.button-cancel:hover {
+  background-color: rgba(196, 30, 58, 0.5);
+  color: #fecd00;
+}
+
+/* Classes diverses */
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: flex;
+}
+
+.active {
+  border-bottom: 2px solid #fecd00;
+}
+
+/* ------------------------------------------------- Paramètres Responsive ----------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------------------- */
+/* Tablette */
+@media screen and (max-width: 768px) {
+  /*----------- Éléments statiques à la page -------------*/
+  /* Interrupteur du menu déroulant */
+  .burger {
+    display: block;
+    cursor: pointer;
+  }
+  nav {
+    justify-content: space-around;
+  }
+  /* Barre de navigation*/
+  .nav-links {
+    background-color: #2e2329;
+    position: absolute;
+    right: 0;
+    min-height: 92vh;
+    top: 7.1vh;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 1rem;
+    width: 50%;
+    transform: translateX(100%);
+    transition: transform 0.7s ease-in;
+  }
+
+  /* Partie de la nav */
+  .connection {
+    border-left: none;
+    padding-top: 1rem;
+    width: 100%;
+    justify-content: space-around;
+    border-top: #fecd00 1px solid;
+  }
+
+  /* Footer */
+  .footer-info {
+    flex-direction: column;
+  }
+
+  /* Page d'accueil */
+  .home {
+    flex-direction: column;
+  }
+  .home .fa {
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+  .home a {
+    padding: 10rem 5rem;
+  }
+
+  /* Boutons */
+  .buttons-container {
+    flex-direction: column;
+    align-self: center;
+  }
+
+  /* Formulaires */
+  fieldset {
+    width: 90vw;
+    padding: 2.5rem 1rem;
+    margin: 2rem -3rem;
+  }
+
+  .login-form,
+  .register-form,
+  .reservation-form {
+    min-width: 100vw;
+  }
+
+  /*
+  textarea {
+  width: 15rem;
+  }*/
+
+  /* Page about*/
+  .about :first-child {
+    font-size: 2.8rem;
+  }
+
+  .fr-flag {
+    width: 3rem;
+    height: 2.2rem;
+  }
+
+  /* Pages Menu et Staff*/
+  figure img {
+    border-radius: 50%;
+    width: 35rem;
+    height: 35rem;
+  }
+
+  figcaption {
+    display: block;
+  }
+
+  .figure-info {
+    display: none;
+  }
+
+  /* Filtre Staff*/
+  .filter li {
+    padding: 2rem;
+  }
+
+  /* Tableau */
+
+  tr,
+  td {
+    font-size: 1rem;
+  }
+  table .button {
+    width: 10vw;
+    padding: 0;
+    height: 5vw;
+    font-size: inherit;
+  }
+  table img {
+    width: 10vw;
+    height: 10vw;
+  }
+
+  /* Mobile */
+
+  @media screen and (max-width: 425px) {
+    body {
+      overflow-x: hidden;
+    }
+
+    .about p {
+      text-align: left;
+    }
+
+    .about :first-child {
+      font-size: 1.7rem;
+    }
+
+    /* Partie de la nav*/
+    .connection li {
+      margin: 0;
+    }
+    .connection a {
+      font-size: 1rem;
+    }
+
+    /* Bande en dessous du header*/
+    .welcome {
+      padding-left: 1.5rem;
+      text-align: left;
+    }
+
+    /* Menu principale*/
+    .home article {
+      height: 40vh;
+    }
+
+    /* Page about */
+    .fr-flag {
+      width: 2rem;
+      height: 1.5rem;
+    }
+    .review article {
+      max-width: 20rem;
+    }
+    /* Formulaire */
+    .login-form > a {
+      max-width: 100%;
+    }
+
+    .error-message i {
+      margin: 0;
+      display: block;
+    }
+
+    /* Pages Staff et Menu*/
+    figure img {
+      width: 20rem;
+      height: 20rem;
+    }
+    /* Panel admin*/
+    tr,
+    td {
+      font-size: 0.7rem;
+    }
+    table img {
+      width: 9vw;
+      height: 9vw;
+    }
+  }
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------- */
+
+/* Transitions, effets visuels & animations */
+.nav-active {
+  transform: translateX(0%);
+}
+
+/* Burger */
+.toggle .burger-line-1 {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+.toggle .burger-line-2 {
+  opacity: 0;
+}
+.toggle .burger-line-3 {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Lightbox apparaissant au clique d'une figure et permettant de naviguer entre les images */
+.lightbox {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  display: none;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox-content img {
+  /*object-fit: cover;*/
+  max-height: 95vh;
+  max-width: 100vw;
+  cursor: pointer;
+  display: block;
+  padding-top: 5rem;
+}
+
+.lightbox .lightbox-content {
+  position: relative;
+  margin: auto;
+  -o-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  -o-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+}
+
+.lightbox.open .lightbox-content {
+  animation: lightboxImage 0.5s ease;
+}
+
+.lightbox-close {
+  position: absolute;
+  height: 4rem;
+  width: 4rem;
+  top: 0;
+  right: 0;
+  font-size: 3.2rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.lightbox-caption {
+  position: relative;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  font-size: 3rem;
+  color: white;
+  font-weight: 400;
+  z-index: -1;
+}
+
+.caption-text {
+  text-transform: capitalize;
+}
+
+.lightbox-item {
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  animation: showItem 1s ease;
+  position: relative;
+}
+
+.lightbox-controls .prev-item,
+.lightbox-controls .next-item {
+  position: absolute;
+  height: 4rem;
+  width: 4rem;
+  background-color: white;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+  top: 50%;
+  margin-top: -2rem;
+  z-index: 110;
+  -o-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.lightbox-controls .prev-item:hover,
+.lightbox-controls .next-item:hover {
+  -o-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.lightbox-controls .prev-item:active,
+.lightbox-controls .next-item:active {
+  -o-transform: scale(1);
+  -moz-transform: scale(1);
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+.lightbox-controls .prev-item {
+  left: 3rem;
+}
+
+.lightbox-controls .next-item {
+  right: 3rem;
+}
+
+.lightbox-controls .prev-item .fa,
+.lightbox-controls .next-item .fa {
+  color: black;
+  font-size: 3.2rem;
+  line-height: 4rem;
+}
+
+/* Effet de survol d'une image*/
+/* Utilisation de la propriété overlow-x hidden pour éviter un agrandissement de la page causé par les translateX*/
+.figure-info {
+  color: white;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  opacity: 0;
+  overflow-x: hidden;
+}
+
+.lightbox-item:hover .figure-info {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.lightbox-item .figure-info h4 {
+  text-transform: capitalize;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  -ms-transform: translateX(-20rem);
+  -o-transform: translateX(-20rem);
+  -moz-transform: translateX(-20rem);
+  -webkit-transform: translateX(-20rem);
+  transform: translateX(-20rem);
+  opacity: 0;
+}
+
+.lightbox-item:hover .figure-info h4 {
+  opacity: 1;
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.lightbox-item i {
+  font-size: 3.5rem;
+  height: 5rem;
+  width: 5rem;
+  text-align: center;
+  border-radius: 50%;
+  position: absolute;
+  right: 20%;
+  bottom: 40%;
+  opacity: 0;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  -ms-transform: translateX(15rem);
+  -o-transform: translateX(15rem);
+  -moz-transform: translateX(15rem);
+  -webkit-transform: translateX(15rem);
+  transform: translateX(15rem);
+}
+
+.lightbox-item:hover i {
+  opacity: 1;
+  -o-transform: translateX(-10rem);
+  -ms-transform: translateX(-10rem);
+  -moz-transform: translateX(-10rem);
+  -webkit-transform: translateX(-10rem);
+  transform: translateX(-10rem);
+}
+
+/* Filtre */
+
+.filter {
+  font-size: 2rem;
+  width: 100%;
+  margin: auto;
+  padding: 2rem;
+  border: 1px solid black;
+  background-color: #006aa8;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.filter li {
+  text-transform: capitalize;
+  cursor: pointer;
+  color: #fecd00;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.filter li:hover {
+  -ms-transform: translateX(-20rem);
+  -o-transform: translateX(-20rem);
+  -moz-transform: translateX(-20rem);
+  -webkit-transform: translateX(-20rem);
+  transform: translateY(1rem);
+}
+
+.lightbox-item.show {
+  animation: lightboxImage 0.5s ease;
+}
+
+/* Les animations doivent préférablement se trouver à la fin pour éviter qu'une classe en fasse appel avant leur définition*/
+@keyframes bounce {
+  60% {
+    -webkit-transform: translate(0, -0.5rem) scale(1.1);
+  }
+}
+
+@keyframes bounce-2 {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes lightboxImage {
+  0% {
+    -moz-transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+
+  100% {
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}

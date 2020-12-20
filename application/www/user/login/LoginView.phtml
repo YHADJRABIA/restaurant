@@ -1,0 +1,33 @@
+<section class="login container">
+
+    <!-- Utilisation de la méthode HTTP POST étant donnée la sensibilité des informations introduites, afin de pas les afficher sur la barre de recherche -->
+    <form class="login-form" action="<?php echo $requestUrl ?>/user/login" method="POST">
+        <h4 class="login-title">Sign-in</h4>
+
+        <div class="form-field">
+            <input id="email" type="text" name="email" required autocomplete="off" value="<?php echo $email ?>">
+            <label for="email">E-mail</label>
+        </div>
+
+        <div class="form-field">
+            <input id="password" type="password" name="password" required>
+            <label for="password">Password</label>
+        </div>
+
+        <!-- Message d'erreur -->
+        <?php if (!empty($errorMessage)) : ?>
+            <div class="error-message">
+                <p> <i class="fa fa-exclamation-triangle"></i><?php echo $errorMessage; ?></p>
+            </div>
+        <?php endif; ?>
+
+        <!-- Boutons -->
+        <div class="buttons-container">
+            <input class="button button-primary" type="submit" value="Sign in">
+            <a class="button button-cancel" href="<?php echo $requestUrl ?>" alt="cancel">Cancel</a>
+        </div>
+
+        <!-- Orientation vers page de création de compte -->
+        <a href="<?php echo $requestUrl ?>/user" title="register">Don't own an account yet? <small><span>Create a new one here.</span></small></a>
+    </form>
+</section>

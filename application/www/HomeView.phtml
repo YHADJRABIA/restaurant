@@ -1,0 +1,13 @@
+<!-- Message de notification -->
+<?php if ($flashBag->hasMessages() == true) : ?>
+    <?php foreach ($flashBag->fetchMessages() as $message) : ?>
+
+        <p class="created"><i class="fa fa-check"></i> <?= $message ?></p>
+    <?php endforeach ?>
+<?php endif; ?>
+<!-- Menu -->
+<section class="home">
+    <article class="home-menu"><a href="<?php echo $requestUrl ?>/menu" title="Menu"><i class="fa fa-utensils"></i> Check out our menu</a> </article>
+    <article class="home-staff"><a href="<?php echo $requestUrl ?>/staff" title="Staff"><i class="fa fa-users"></i> Meet our staff </a></article>
+    <article class="home-about"><a href="<?php echo $requestUrl ?>/about" title="About us"><i class="fa fa-info-circle"></i> About us </a></article>
+</section>

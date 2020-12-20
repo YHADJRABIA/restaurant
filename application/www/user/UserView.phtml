@@ -1,0 +1,106 @@
+<section class="register container">
+
+    <!-- Utilisation de la méthode HTTP POST étant donnée la sensibilité des informations introduites, afin de pas les afficher sur la barre de recherche -->
+    <form class="register-form" action="<?= $requestUrl ?>/user" method="POST">
+        <h4 class="register-title">Registration</h4>
+
+        <!-- Message d'erreur -->
+        <?php if (!empty($errorMessage)) : ?>
+            <div class="error-message">
+                <p> <i class="fa fa-exclamation-triangle"></i><?php echo $errorMessage; ?></p>
+            </div>
+        <?php endif; ?>
+
+        <div class="form-field">
+            <input id="firstName" type="text" name="firstName" required value="<?= $firstName ?>">
+            <label for="firstName">Name</label>
+        </div>
+
+        <div class="form-field">
+            <input id="lastName" type="text" name="lastName" required value="<?= $lastName ?>">
+            <label for="lastName">Surname</label>
+        </div>
+
+
+        <div class="form-field birthday">
+
+
+            <label for="birthDay">Birthday</label>
+            <select id="birthDay" name="birthDay">
+                <?php for ($day = 1; $day <= 31; $day++) : ?>
+                    <option value="<?= $day ?>"><?= $day ?></option>
+                <?php endfor; ?>
+            </select>
+            <span> - </span>
+            <select name="birthMonth">
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+            <span> - </span>
+            <select name="birthYear">
+                <?php for ($year = 1914; $year <= date('Y') - 5; $year++) : ?>
+                    <option value="<?= $year; ?>"><?= $year; ?></option>
+                <?php endfor; ?>
+            </select>
+        </div>
+
+
+        <div class="form-field address">
+            <label for="address">Address</label>
+            <textarea id="address" name="address" required rows="1"><?= $address ?></textarea>
+        </div>
+
+
+
+        <div class="form-field">
+            <input id="city" type="text" name="city" required value="<?= $city ?>">
+            <label for="city">City</label>
+        </div>
+
+        <div class="form-field">
+            <input id="zipCode" type="number" maxlength="5" name="zipCode" required value="<?= $zipCode ?>">
+            <label for="zipCode">Postal code</label>
+        </div>
+
+        <div class="form-field">
+            <input id="country" type="text" maxlength="20" name="country" required value="<?= $country ?>">
+            <label for="country">Country</label>
+        </div>
+
+
+        <div class="form-field">
+            <input id="phone" type="number" maxlength="20" name="phone" required value="<?= $phone ?>">
+            <label for="phone">Phone</label>
+        </div>
+
+        <fieldset>
+            <legend>Login credentials</legend>
+            <div class="form-field">
+                <input id="email" type="email" name="email" required autocomplete="off" value="<?= $email ?>">
+                <label for="email">E-mail</label>
+            </div>
+
+            <div class="form-field">
+                <input id="password" type="password" name="password" required>
+                <label for="password">Password</label>
+            </div>
+
+        </fieldset>
+
+        <!-- Boutons -->
+        <div class="buttons-container">
+            <input class="button button-primary" type="submit" value="Register">
+            <a class="button button-cancel" href="<?= $requestUrl ?>" title="cancel">Cancel</a>
+        </div>
+    </form>
+</section>

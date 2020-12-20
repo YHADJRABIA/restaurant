@@ -1,0 +1,79 @@
+<!-- Message de notification -->
+<?php if ($flashBag->hasMessages() == true) : ?>
+    <?php foreach ($flashBag->fetchMessages() as $message) : ?>
+
+        <p class="created"><i class="fa fa-user"></i> <?php echo $message ?></p>
+    <?php endforeach ?>
+<?php endif; ?>
+<section class="staff container">
+
+    <!-- Utilisation de l'encodage form-data car le formulaire contient un input de type file.
+     A noter que cette encodage ne peut être utilisé qu'avec la méthode HTTP POST -->
+    <form class="insert-form" action="<?php echo $requestUrl ?>/admin/staff" method="POST" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Add staff member</legend>
+
+            <div class="form-field">
+                <input id="firstName" type="text" name="firstName" required>
+                <label for="firstName">Name</label>
+            </div>
+            <div class="form-field">
+                <input id="lastName" type="text" name="lastName" required>
+                <label for="lastName">Surname</label>
+            </div>
+
+            <div class="form-field">
+                <input id="occupation" type="text" name="occupation" required>
+                <label for="occupation">Occupation</label>
+            </div>
+
+            <div class="form-field">
+                <label for="category">Category</label>
+                <!-- Il est ici possible de faire une injection SQL en inspectant la page et en introduisant une catégorie ne figurant pas dans les balises <option>.
+                    Mais vu que l'administrateur est sensé être bienveillant on a en général pas besoin d'effectuer des contrôles supplémentaires.
+                    Quoi qu'il en soit cette injection SQL n'aurait pas eu de conséquences catastrophiques — ajouter une catégorie n'était pas listée.
+                    Cette faille a été corrigée (voir contrôleur) — on vérifie que l'option injectée appartient bien aux catégories présentes dans la table -->
+                <select name="category">
+                    <?php foreach ($jobCategories as $jobCategory) : ?>
+
+                        <option><?php echo $jobCategory['Category'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <input id="photo" name="photo" type="file">
+                <label for="photo">Photo</label>
+
+            </div>
+
+
+            <div class="buttons-container">
+                <input class="button button-primary" type="submit" value="Add">
+            </div>
+        </fieldset>
+    </form>
+
+    <table id="crud-table">
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Occupation</th>
+            <th>Photo</th>
+            <th>Edit</th>
+            <th>Remove</th>
+        </tr>
+        <?php foreach ($staffMembers as $staffMember) : ?>
+            <tr>
+                <td data-staff="firstName"><?php echo $staffMember['FirstName']; ?></td>
+                <td data-staff="lastName"><?php echo $staffMember['LastName']; ?></td>
+                <td data-staff="occupation"><?php echo $staffMember['Occupation']; ?></td>
+                <td><img src="<?php echo $wwwUrl; ?>/img/staff/<?php echo $staffMember['Photo']; ?>" alt="<?php echo $staffMember['Photo']; ?>" /></td>
+                <td><button data-staff="<?php echo $staffMember['Id']; ?>" id="edit-button" class="button button-primary"><i class="fa fa-cog"></i></button></td>
+                <td><button data-staff="<?php echo $staffMember['Id']; ?>" id="remove-button" class="button button-cancel"><i class="fa fa-times"></i></button></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</section>
+
+<script src="<?php echo $wwwUrl ?>/js/ajax/staff.js"></script>

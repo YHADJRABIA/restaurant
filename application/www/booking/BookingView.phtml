@@ -1,0 +1,62 @@
+<section class="booking container">
+
+    <form class="reservation-form" action="<?php echo $requestUrl ?>/booking" method="POST">
+        <h4 class="register-title"> Book a table</h4>
+
+        <div class="form-field booking-date">
+            <label for="bookingDay">Booking date</label>
+            <select id="bookingDay" name="bookingDay">
+                <?php for ($bookingDay = 1; $bookingDay <= 31; $bookingDay++) : ?>
+                    <option value="<?php echo $bookingDay ?>"><?php echo $bookingDay ?></option>
+                <?php endfor; ?>
+            </select>
+            <span> - </span>
+            <select name="bookingMonth">
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+            <span> - </span>
+            <select name="bookingYear">
+                <!-- Construction d'une liste déroulante avec l'année en cours et l'année suivante -->
+                <option value="<?php echo date('Y')     ?>"><?php echo date('Y')     ?></option>
+                <option value="<?php echo date('Y') + 1 ?>"><?php echo date('Y') + 1 ?></option>
+            </select>
+            <span> at </span>
+            <select name="bookingHour">
+                <?php for ($bookingHour = 0; $bookingHour <= 23; $bookingHour++) : ?>
+                    <option value="<?php echo $bookingHour ?>"><?php echo $bookingHour ?></option>
+                <?php endfor; ?>
+            </select>
+            <span> : </span>
+            <select name="bookingMinute">
+                <option value="00">00</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="45">45</option>
+            </select>
+        </div>
+
+        <div class="form-field number-of-tables">
+            <label for="numberOfSeats">Number of seats</label>
+            <select id="numberOfSeats" name="numberOfSeats">
+                <?php for ($numberOfSeats = 1; $numberOfSeats <= 10; $numberOfSeats++) : ?>
+                    <option value="<?php echo $numberOfSeats ?>"><?php echo $numberOfSeats ?></option>
+                <?php endfor; ?>
+            </select>
+        </div>
+
+        <div class="buttons-container">
+            <input class="button button-primary" type="submit" value="Book">
+            <a class="button button-cancel" href="<?php echo $requestUrl ?>">Cancel</a>
+        </div>
+    </form>

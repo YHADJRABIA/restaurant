@@ -1,0 +1,14 @@
+<section class="menu container">
+
+    <?php foreach ($menuItems as $menuItem) : ?>
+        <figure class="menu-item lightbox-item">
+            <img src="<?php echo $wwwUrl; ?>/img/menu/<?php echo $menuItem['Photo']; ?>" alt="<?php echo $menuItem['Photo']; ?>" />
+            <figcaption><?php echo $menuItem['Name']; ?> — <span><?php echo $menuItem['Price']; ?> €</span></figcaption>
+            <div class="figure-info">
+                <h4><?php echo $menuItem['Name']; ?> — <span><?php echo $menuItem['Price']; ?> €</span></h4>
+                <i class="fa fa-search"></i>
+            </div>
+        </figure>
+    <?php endforeach; ?>
+
+</section>

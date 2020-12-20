@@ -1,0 +1,58 @@
+<!-- Message de notification -->
+<?php if ($flashBag->hasMessages() == true) : ?>
+    <?php foreach ($flashBag->fetchMessages() as $message) : ?>
+
+        <p class="created"><i class="fa fa-drumstick-bite"></i> <?php echo $message ?></p>
+    <?php endforeach ?>
+<?php endif; ?>
+<section class="menu container">
+
+    <!-- Utilisation de l'encodage form-data car le formulaire contient un input de type file.
+     A noter que cette encodage ne peut être utilisé qu'avec la méthode HTTP POST -->
+    <form class="insert-form" action="<?php echo $requestUrl ?>/admin/menu" method="POST" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Add menu item</legend>
+            <div class="form-field">
+                <input id="name" type="text" name="name" required>
+                <label for="name">Name</label>
+
+            </div>
+            <div class="form-field">
+                <input id="price" type="number" step="0.1" name="price" required>
+                <label for="price">Price</label>
+
+            </div>
+            <div class="form-field">
+                <input id="photo" name="photo" type="file">
+                <label for="photo">Photo</label>
+
+            </div>
+            <div class="buttons-container">
+                <input class="button button-primary" type="submit" value="Add">
+            </div>
+        </fieldset>
+    </form>
+
+
+    <table id="crud-table">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Photo</th>
+            <th>Edit</th>
+            <th>Remove</th>
+        </tr>
+        <?php foreach ($menuItems as $menuItem) : ?>
+            <tr>
+                <td data-menu="name"><?php echo $menuItem['Name']; ?></td>
+                <td data-menu="price"><?php echo $menuItem['Price'];  ?> €</td>
+                <td><img src="<?php echo $wwwUrl; ?>/img/menu/<?php echo $menuItem['Photo']; ?>" alt="<?php echo $menuItem['Photo']; ?>" /></td>
+                <td><button data-menu="<?php echo $menuItem['Id']; ?>" id="edit-button" class="button button-primary"><i class="fa fa-cog"></i></button></td>
+                <td><button data-menu="<?php echo $menuItem['Id']; ?>" id="remove-button" class="button button-cancel"><i class="fa fa-times"></i></button></td>
+
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</section>
+
+<script src="<?php echo $wwwUrl ?>/js/ajax/menu.js"></script>

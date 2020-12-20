@@ -1,0 +1,19 @@
+<ul class="filter">
+
+    <li class="active" data-filter="all"> <i class="fa fa-filter"></i> All</li>
+    <?php foreach ($jobCategories as $jobCategory) : ?>
+        <li data-filter="<?php echo $jobCategory['Category'] ?>"><?php echo $jobCategory['Category'] ?></li>
+    <?php endforeach; ?>
+</ul>
+<section class="staff container">
+    <?php foreach ($staffMembers as $staffMember) : ?>
+        <figure class="staff-member lightbox-item" data-category="<?php echo $staffMember['Category']; ?>">
+            <img src="<?php echo $wwwUrl; ?>/img/staff/<?php echo $staffMember['Photo']; ?>" alt="<?php echo $staffMember['Photo']; ?>" />
+            <figcaption><?php echo $staffMember['FirstName']; ?> — <span><?php echo $staffMember['Occupation']; ?></span></figcaption>
+            <div class="figure-info">
+                <h4><?php echo $staffMember['FirstName']; ?> — <span><?php echo $staffMember['Occupation']; ?></h4>
+                <i class="fa fa-search"></i>
+            </div>
+        </figure>
+    <?php endforeach; ?>
+</section>

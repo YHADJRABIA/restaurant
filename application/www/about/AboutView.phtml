@@ -1,0 +1,22 @@
+<section class="about container">
+    <h2><i class="fa fa-cross fa-rotate-270"></i> About our restaurant <div class="fr-flag"></div>
+    </h2>
+    <p>Established in 1988, our restaurant specialises itself in Swedish pastries.</p>
+    <p>The primary principle of Fika is taking a relaxed coffee break, while having some snacks, like cookies or buns, along the way. Fika also has an active social component, as it allows people to sit down with their friends and colleagues leisurely, and slowly sip away their favorite beverage.</p>
+    <p>We provide high-quality food at competitive prices.</p>
+    <p>Don't just take our word for it — here are some of our customers' testimonials:</p>
+    <section class="review">
+        <?php foreach ($testimonials as $testimonial) : ?>
+            <article>
+                <img src="<?php echo $wwwUrl ?>/img/testimonial/<?php echo $testimonial['Photo']; ?>" alt="<?php echo $testimonial['Photo']; ?>" />
+                <cite><?php echo $testimonial['FirstName']; ?> <?php echo $testimonial['LastName']; ?></cite>
+                <blockquote>
+                    &ldquo; <?php echo $testimonial['Comment']; ?> &bdquo;
+                </blockquote>
+            </article>
+        <?php endforeach; ?>
+    </section>
+
+    <iframe width="600" height="400" src="https://maps.google.com/maps?q=versailles&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+
+</section>
